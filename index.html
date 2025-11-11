@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About me</title>
+    <!-- Title  -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8fafc;
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+      }
+      header, section {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      }
+      img {
+        width: 150px;
+        border-radius: 10px;
+      }
+      textarea {
+        width: 100%;
+        height: 80px;
+      }
+      button {
+        background-color: #0077b6;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .note {
+        background-color: #e3f2fd;
+        padding: 10px;
+        margin: 6px 0;
+        border-left: 4px solid #0077b6;
+      }
+    </style>
+  </head>
+
+  
+<header style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+    <div style="flex: 1;">
+      <h1>Minh Nhật</h1>
+      <p>
+        Hello! I’m currently a student at Fulbright University Vietnam.
+        This website is created for my assignment and won't be updated again.
+        Also I love Maple Leafs.
+      </p>
+    </div>
+
+    <img src="my_face.png" alt="My personal photo" style="width: 180px; border-radius: 10px;">
+  </header>
+
+    <!-- about me yap -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>I’m passionate about doing absolutely nothing, and I only do the bare minimum
+         when possible. People often call me lazy for this but I'm fine with that. 
+         
+         Below are some information about me:
+      </p>
+      <table border="1">
+        <tr><th>Education</th><th>Skills</th><th>Hobbies</th></tr>
+        <tr><td>Fulbright University Vietnam, sophomore
+        </td>
+            <td>HTML, Photoshop </td>
+            <td>Chess, Sports commentating </td></tr>
+      </table>
+    </section>
+
+    <!-- Projects out of thin air -->
+    <section id="portfolio">
+      <h2>My current class projects</h2>
+      <ul>
+        <li>Personal Portfolio Website</li>
+        <li>Data Processing with R </li>
+        <li>Data Visualization with R</li>
+      </ul>
+    </section>
+
+    <!-- Contact me, dont expect i will reply though -->
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <form id="contactForm">
+        Name: <input type="text" id="name"><br><br>
+        Message:<br>
+        <textarea id="message"></textarea><br>
+        <input type="submit" value="Send">
+      </form>
+      <p>Email: dontcontactme@gmail.com</p>
+    </section>
+
+    <!--  Notebook - DOM Manipulation -->
+    <section id="notebook">
+      <h2>Notebook</h2>
+      <p>Type your note below:</p>
+      <textarea id="noteInput" placeholder="Write your note..."></textarea><br>
+      <button id="addNoteBtn">Add Note</button>
+      <h3>Notes</h3>
+      <div id="notesContainer"></div>
+    </section>
+
+    <!-- Lecture 20–21: JavaScript Basics + onclick events -->
+<script>
+  /* ===============================
+     NOTEBOOK EVENT HANDLING SECTION
+     ===============================
+     - Wait for user to click the "Add Note" button.
+     - When clicked, read the note text from the textarea.
+     - If not empty, create a new note element and display it.
+     - Then clear the input field.
+  */
+
+  // Step 1: Access elements from the DOM
+  const addNoteBtn = document.getElementById("addNoteBtn");
+  const noteInput = document.getElementById("noteInput");
+  const notesContainer = document.getElementById("notesContainer");
+
+  // Step 2: Add an event listener to the button
+  addNoteBtn.addEventListener("click", addNote);
+
+  // Step 3: Define the function that runs when the button is clicked
+  function addNote() {
+    // Read (get) the text from the textarea
+    const text = noteInput.value.trim();
+
+    // Check if empty (validation)
+    if (text === "") {
+      alert("Please type your note before adding!");
+      return;
+    }
+
+    // Create a new <div> element for the note
+    const note = document.createElement("div");
+    note.className = "note";
+    note.innerText = text;
+
+    // Append the note to the notes container
+    notesContainer.appendChild(note);
+
+    // Clear the textarea after adding
+    noteInput.value = "";
+  }
+
+  // Lecture 21: Example of function triggered by form event
+  document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Thank you, your message has been received!");
+  });
+</script>
+
+      
+  </body>
+</html>
